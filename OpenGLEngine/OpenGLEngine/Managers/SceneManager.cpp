@@ -17,7 +17,7 @@ Managers::SceneManager::SceneManager()
 	//	0.0f, 0.0f, -1.0f, 0.0f,
 	//	0.0f, 0.0f, 10.0f, 1.0f);
 	
-	viewMatrix = glm::lookAt(glm::vec3(5.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0, 1, 0));
+	viewMatrix = glm::lookAt(glm::vec3(1.5, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0, 1, 0));
 	
 }
 

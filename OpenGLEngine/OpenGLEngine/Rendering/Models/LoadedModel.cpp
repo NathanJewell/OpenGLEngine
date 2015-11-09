@@ -81,7 +81,7 @@ void LoadedModel::Draw(const glm::mat4& projectionMatrix,
 	float currentTime = (float)glutGet(GLUT_ELAPSED_TIME);
 
 	rotation = glm::vec3(0.0, 1.0, 0.0);
-	rotation *= .00001f * rotationSpeed * currentTime;
+	rotation *= .000005f * rotationSpeed * currentTime;
 
 	//glm::vec3 translation = glm::vec3(glm::abs(glm::cos(currentTime / 1000)));
 	glm::vec3 translation = glm::vec3(0.0, 0.0, 0.0);
@@ -117,7 +117,8 @@ void LoadedModel::Draw(const glm::mat4& projectionMatrix,
 
 	glm::vec4 lightColor = glm::vec4(1.0, 1.0, 1.0, 1.0);
 	glm::vec4 ambientColor = glm::vec4(0.0, 0.0, 0.0, 0.0);
-	glm::vec4 diffuseColor = glm::vec4(0.0, 0.0, 1.0, 1.0);
+	glm::vec4 diffuseColor = glm::vec4(1.0, 1.0, 1.0, 1.0);
+	glm::vec4 specularColor = glm::vec4(1.0, 1.0, 1.0, 1.0);
 	glm::vec3 lightPosition_worldspace = glm::vec3(5.0f, 0.0, 0.0);
 	float lightPower = 60; //power in watts
 

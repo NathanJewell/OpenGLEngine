@@ -10,7 +10,7 @@ int main(int argc, char**argv)
 		400, 200, //position
 		1200, 900, //size
 		true);//reshape
-	Core::ContextInfo context(4, 5, true);
+	Core::ContextInfo context(3, 3, true);
 	Core::FramebufferInfo frameBufferInfo(true, true, true, true);
 
 	//initialize GLUT
