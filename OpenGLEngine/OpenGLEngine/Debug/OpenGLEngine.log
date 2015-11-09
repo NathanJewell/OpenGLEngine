@@ -1,26 +1,10 @@
-﻿Build started 11/8/2015 7:59:19 PM.
+﻿Build started 11/8/2015 11:58:54 PM.
      1>Project "C:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\OpenGLEngine\OpenGLEngine.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\packages\glm.0.9.7.1\build\native\../..//build/native/include/ /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Core\Init\InitGLEW.cpp Core\Init\InitGLUT.cpp Main.cpp Managers\LogManager.cpp Managers\ModelManager.cpp Managers\SceneManager.cpp Managers\ShaderManager.cpp Rendering\Lightable.cpp Rendering\Model.cpp Rendering\Models\Cube.cpp Rendering\Models\LoadedModel.cpp Rendering\Models\Triangle.cpp
-         Triangle.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\packages\glm.0.9.7.1\build\native\../..//build/native/include/ /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Rendering\Models\LoadedModel.cpp
          LoadedModel.cpp
-     1>c:\users\nathan\desktop\openglengine\openglengine\openglengine\rendering\models\loadedmodel.cpp(17): warning C4101: 'uvBuffer' : unreferenced local variable
-     1>c:\users\nathan\desktop\openglengine\openglengine\openglengine\rendering\models\loadedmodel.cpp(189): warning C4101: 'uvIndex' : unreferenced local variable
-         Cube.cpp
-         Model.cpp
-         Lightable.cpp
-         ShaderManager.cpp
-         SceneManager.cpp
-         ModelManager.cpp
-         LogManager.cpp
-     1>c:\users\nathan\desktop\openglengine\openglengine\openglengine\managers\logmanager.cpp(114): warning C4018: '<' : signed/unsigned mismatch
-         Main.cpp
-         InitGLUT.cpp
-         InitGLEW.cpp
-         Generating Code...
-     1>c:\users\nathan\desktop\openglengine\openglengine\openglengine\managers\modelmanager.cpp(59): warning C4715: 'Managers::ModelManager::getModel' : not all control paths return a value
-       ResourceCompile:
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /IC:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\packages\glm.0.9.7.1\build\native\../..//build/native/include/ /nologo /fo"Debug\OpenGLEngine.res" OpenGLEngine.rc 
+     1>c:\users\nathan\desktop\openglengine\openglengine\openglengine\rendering\models\loadedmodel.cpp(24): warning C4101: 'uvBuffer' : unreferenced local variable
+     1>c:\users\nathan\desktop\openglengine\openglengine\openglengine\rendering\models\loadedmodel.cpp(212): warning C4101: 'uvIndex' : unreferenced local variable
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\Debug\OpenGLEngine.exe" /INCREMENTAL /NOLOGO /LIBPATH:Dependencies\freeglut /LIBPATH:Dependencies\glew kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opengl32.lib freeglut.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\Debug\OpenGLEngine.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\Debug\OpenGLEngine.lib" /MACHINE:X86 Debug\OpenGLEngine.res
          Debug\InitGLEW.obj
@@ -35,10 +19,9 @@
          Debug\Cube.obj
          Debug\LoadedModel.obj
          Debug\Triangle.obj
-         LINK : C:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\Debug\OpenGLEngine.exe not found or not built by the last incremental link; performing full link
          OpenGLEngine.vcxproj -> C:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\Debug\OpenGLEngine.exe
      1>Done Building Project "C:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\OpenGLEngine\OpenGLEngine.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:06.75
+Time Elapsed 00:00:01.23

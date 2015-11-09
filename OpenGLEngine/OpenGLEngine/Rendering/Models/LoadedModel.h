@@ -6,6 +6,7 @@
 #include <stdarg.h>
 #include "glm/gtx/transform.hpp"
 #include <vector>
+#include "../../Managers/LogManager.h"
 
 namespace Rendering
 {

@@ -8,7 +8,7 @@ int main(int argc, char**argv)
 {
 	Core::WindowInfo window(std::string("This is hype!"),//window name
 		400, 200, //position
-		800, 600, //size
+		1200, 900, //size
 		true);//reshape
 	Core::ContextInfo context(4, 5, true);
 	Core::FramebufferInfo frameBufferInfo(true, true, true, true);

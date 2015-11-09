@@ -14,8 +14,8 @@ ModelManager::ModelManager()
 	*/
 
 	Rendering::Models::LoadedModel* cube = new Rendering::Models::LoadedModel();
-	cube->SetProgram(Managers::ShaderManager::GetShader("simpleShader"));
-	cube->Create("C:\\Users\\Nathan\\Documents\\VisualStudio2013\\Projects\\OpenGLEngine\\OpenGLEngine\\Rendering\\Models\\uvCube.obj");
+	cube->SetProgram(Managers::ShaderManager::GetShader("lightingShader"));
+	cube->Create("C:\\Users\\Nathan\\Desktop\\OpenGLEngine\\OpenGLEngine\\OpenGLEngine\\Rendering\\Models\\monkey.obj");
 	gameModelList["cube"] = cube;
 
 }

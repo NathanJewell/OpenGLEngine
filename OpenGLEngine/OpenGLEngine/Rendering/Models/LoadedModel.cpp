@@ -1,8 +1,14 @@
 //LoadedModel.cpp
 #include "LoadedModel.h"
 #include <iostream>
+
 using namespace Rendering;
 using namespace Models;
+
+inline static void Log(LogLevel level, const std::string& text) //alias for Managers::LogManager::Log()
+{
+	Managers::LogManager::Log(level, text);
+}
 
 #define PI 3.14159265
 
@@ -53,7 +59,7 @@ void LoadedModel::Create(const std::string loadPath)
 
 	glEnableVertexAttribArray(2);
 	glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
-	glVertexAttribPointer(2, 3, GL_FLOAT, false, 0, (void*)0);
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
 
 	glBindVertexArray(0);
@@ -74,16 +80,17 @@ void LoadedModel::Draw(const glm::mat4& projectionMatrix,
 {
 	float currentTime = (float)glutGet(GLUT_ELAPSED_TIME);
 
-	rotation = .0005f * rotationSpeed * currentTime;
+	rotation = glm::vec3(0.0, 1.0, 0.0);
+	rotation *= .00001f * rotationSpeed * currentTime;
 
-	glm::vec3 translation = glm::vec3(glm::abs(glm::cos(currentTime / 1000)));
-	translation *= 5.0f;
+	//glm::vec3 translation = glm::vec3(glm::abs(glm::cos(currentTime / 1000)));
+	glm::vec3 translation = glm::vec3(0.0, 0.0, 0.0);
+	//translation *= 0.0f;
 	//std::cout << "Translation: " << translation.x << ", " << translation.y << ", " << translation.z << std::endl;
 
-	glm::vec3 rotationSin = glm::vec3(rotation.x * PI / 180, rotation.y * PI / 180, rotation.z*PI / 180);
 	translationMatrix = glm::translate(translation);
 
-	glm::mat4 translate = glm::mat4(1.0, 0.0, 0.0, translation.x,
+	glm::mat4 translate = glm::mat4(1.0, 0.0, 0.0, translation.x, //con
 		0.0, 1.0, 0.0, translation.y,
 		0.0, 0.0, 1.0, translation.z,
 		0.0, 0.0, 0.0, 1.0);
@@ -103,17 +110,24 @@ void LoadedModel::Draw(const glm::mat4& projectionMatrix,
 		0.0, 0.0, 1.0, 0.0,
 		0.0, 0.0, 0.0, 1.0);
 
-	glm::mat4 model = translate * rotate_x * rotate_y * rotate_z; //can add scaling here
+
+	glm::mat4 rotate = rotate_x * rotate_z * rotate_y; //can add scaling here
+	glm::mat4 model = translate * rotate;
 	glm::mat4 MVP = projectionMatrix * viewMatrix * model;
 
 	glm::vec4 lightColor = glm::vec4(1.0, 1.0, 1.0, 1.0);
 	glm::vec4 ambientColor = glm::vec4(0.0, 0.0, 0.0, 0.0);
 	glm::vec4 diffuseColor = glm::vec4(0.0, 0.0, 1.0, 1.0);
-	glm::vec3 lightPosition_worldspace = glm::vec3(5, 5, 5);
+	glm::vec3 lightPosition_worldspace = glm::vec3(5.0f, 0.0, 0.0);
 	float lightPower = 60; //power in watts
 
+	//std::cout << translation.x << ", " << translation.y << ", " << translation.z << "\n";
+
 	glUseProgram(program);
+
+
 	//passing transformation parameters for vertex shader
+	glUniformMatrix4fv(glGetUniformLocation(program, "rotation_matrix"), 1, false, &rotate[0][0]);		//pass uniform rotation matrix into shader
 	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &translate[0][0]);		//pass translationVector into shader
 	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, false, &viewMatrix[0][0]);				//pass viewMatrix into shader
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projectionMatrix[0][0]);	//pass projectionMatrix into shader
@@ -124,10 +138,12 @@ void LoadedModel::Draw(const glm::mat4& projectionMatrix,
 	glUniform4f(glGetUniformLocation(program, "ambientColor"), ambientColor.r, ambientColor.g, ambientColor.b, ambientColor.a);
 	glUniform4f(glGetUniformLocation(program, "diffuseColor"), diffuseColor.r, diffuseColor.g, diffuseColor.b, diffuseColor.a);
 	glUniform3f(glGetUniformLocation(program, "lightPosition_worldspace"), lightPosition_worldspace.x, lightPosition_worldspace.y, lightPosition_worldspace.z);
+	glUniform1f(glGetUniformLocation(program, "lightPower"), lightPower);
 	glBindVertexArray(vao);
+
 	GLint numVertices;
 	glGetIntegerv(GL_MAX_ELEMENTS_VERTICES, &numVertices);
-	glDrawArrays(GL_TRIANGLES, 0, numVertices);//12*3 for 12 triangle ie 2 per face and six faces
+	glDrawArrays(GL_TRIANGLES, 0, numVertices);//12*3 for 12 triangle = 2 tri per face and six faces
 }
 
 bool LoadedModel::loadOBJ(const std::string& path, std::vector<glm::vec3>& outVerts, std::vector<glm::vec2>& outUV, std::vector<glm::vec3>& outNormals)
@@ -147,7 +163,8 @@ bool LoadedModel::loadOBJ(const std::string& path, std::vector<glm::vec3>& outVe
 	FILE* file = fopen(path.c_str(), "r");//open file to read
 	if (file == NULL) //error if file was not opened
 	{
-		printf("LoadedModel ERROR:\n\tin loadOBJ():\tCould not open .OBJ file.\n");
+		Log(LOG_ERROR, "In LoadedModel\n\t loadOBJ():\t Could not open .OBJ file.");
+		//printf("LoadedModel ERROR:\n\tin loadOBJ():\tCould not open .OBJ file.\n");
 		return false;
 	}
 	std::cout << "Loading .OBJ file \"" << path.c_str() << "\".: \n";
@@ -161,10 +178,15 @@ bool LoadedModel::loadOBJ(const std::string& path, std::vector<glm::vec3>& outVe
 			break;
 		if (strcmp(lineHeader, "spec") == 0)
 		{
-			fscanf(file, "%f %f %f\n", &VERTICES, &NORMALS, &UVS);
-			std::cout << "\tLoading vertices?: " << VERTICES << "\n";
-			std::cout << "\tLoading normals?: " << NORMALS << "\n";
-			std::cout << "\tLoading UVs?: " << UVS << "\n";
+			fscanf(file, "%d %d %d\n", &VERTICES, &NORMALS, &UVS);
+		//	Log(LOG_INFO,
+		//		"\t Loading vertices?: "+ VERTICES	+ "\n" +
+		//		"\tLoading normals?: "	+ NORMALS	+ "\n" +
+		//		"\tLoading UVs?: "		+ UVS		+ "\n");
+
+			std::cout << "\tLoading vertices?: \t" << VERTICES << "\n";
+			std::cout << "\tLoading normals?: \t" << NORMALS << "\n";
+			std::cout << "\tLoading UVs?:     \t" << UVS << "\n";
 		}
 		else if (strcmp(lineHeader, "v") == 0 && VERTICES) //if the first character of the line is a v
 		{
@@ -249,8 +271,4 @@ bool LoadedModel::loadOBJ(const std::string& path, std::vector<glm::vec3>& outVe
 		}
 	}
 	return true;
-
-
-
-
 }
