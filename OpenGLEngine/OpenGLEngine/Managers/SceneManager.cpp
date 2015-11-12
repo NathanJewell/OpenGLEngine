@@ -12,12 +12,13 @@ Managers::SceneManager::SceneManager()
 
 	modelManager = new Managers::ModelManager();
 
+	controlManager = new Managers::ControlManager();
 	//viewMatrix = glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
 	//	0.0f, 1.0f, 0.0f, 0.0f,
 	//	0.0f, 0.0f, -1.0f, 0.0f,
 	//	0.0f, 0.0f, 10.0f, 1.0f);
 	
-	viewMatrix = glm::lookAt(glm::vec3(1.5, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0, 1, 0));
+	viewMatrix = glm::lookAt(glm::vec3(1.5, 0.0, 0.0), glm::vec3(1.5, 0.0, 0.0) + glm::vec3(-1.0, 0.0, 0.0), glm::vec3(0, 1, 0));
 	
 }
 
@@ -25,10 +26,13 @@ Managers::SceneManager::~SceneManager()
 {
 	delete shaderManager;
 	delete modelManager;
+	delete controlManager;
 }
 
 void Managers::SceneManager::notifyBeginFrame()
 {
+	controlManager->Update();
+	//viewMatrix = glm::lookAt(controlManager->getCameraPosition(), controlManager->getCameraPosition() + controlManager->getCameraDirection(), controlManager->getCameraUp()); 
 	modelManager->Update();
 }
 

@@ -4,6 +4,7 @@
 #include "ShaderManager.h"
 #include "../Core/Listener.h"
 #include "ModelManager.h"
+#include "ControlManager.h"
 #include "glm\gtc\matrix_transform.hpp"
 namespace Managers
 {
@@ -21,6 +22,8 @@ namespace Managers
 	private:
 		Managers::ShaderManager* shaderManager;
 		Managers::ModelManager* modelManager;
+		Managers::ControlManager* controlManager;
 		glm::mat4 projectionMatrix, viewMatrix; //transformation matrices
+
 	};
 }

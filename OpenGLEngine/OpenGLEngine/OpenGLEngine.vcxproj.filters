@@ -66,6 +66,12 @@
     <ClCompile Include="Rendering\Lightable.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Managers\ControlManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\BMPLoader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -120,6 +126,12 @@
       <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Lightable.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\ControlManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\BMPLoader.h">
       <Filter>Rendering</Filter>
     </ClInclude>
   </ItemGroup>

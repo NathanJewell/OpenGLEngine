@@ -1,14 +1,16 @@
-#version 450 core
+#version 410 core
 #define USE_HALF_VECTOR 1
 
-
+layout(location = 3) in vec2 uv;
+ 
 uniform mat4 view_matrix;
 uniform vec4 lightColor;
 uniform vec4 diffuseColor;
 uniform vec4 ambientColor;
 uniform vec4 specularColor;
+uniform sampler2D tex2d;
 
-in vec4 color;
+in vec4 backup_color;
 in mat4 modelview_matrix;
 in vec3 vertex_worldspace;
 in vec3 normal_cameraspace;
@@ -20,6 +22,8 @@ out vec4 out_color;
 
 void main(void)
 {
+	vec4 color = backup_color;
+		
 	vec3 normal_n = normalize(normal_cameraspace);
 	vec3 lightDirection_n = normalize(lightDirection_cameraspace);
 
@@ -32,7 +36,7 @@ void main(void)
 	float cosAlpha = clamp(dot(camDirection_cameraspace, normal_reflect), 0, 1);
 	
 	
-	out_color = ambientColor + color * lightColor * cosTheta + specularColor * color * lightColor * pow(cosAlpha, 5);
+	out_color = color * lightColor * cosTheta + specularColor * color * lightColor * pow(cosAlpha, 5);
 	
 }
 

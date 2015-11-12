@@ -72,10 +72,12 @@
     <ClCompile Include="Core\Init\InitGLEW.cpp" />
     <ClCompile Include="Core\Init\InitGLUT.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Managers\ControlManager.cpp" />
     <ClCompile Include="Managers\LogManager.cpp" />
     <ClCompile Include="Managers\ModelManager.cpp" />
     <ClCompile Include="Managers\SceneManager.cpp" />
     <ClCompile Include="Managers\ShaderManager.cpp" />
+    <ClCompile Include="Rendering\BMPLoader.cpp" />
     <ClCompile Include="Rendering\Lightable.cpp" />
     <ClCompile Include="Rendering\Model.cpp" />
     <ClCompile Include="Rendering\Models\Cube.cpp" />
@@ -89,10 +91,12 @@
     <ClInclude Include="Core\Init\InitGLUT.h" />
     <ClInclude Include="Core\Init\WindowInfo.h" />
     <ClInclude Include="Core\Listener.h" />
+    <ClInclude Include="Managers\ControlManager.h" />
     <ClInclude Include="Managers\LogManager.h" />
     <ClInclude Include="Managers\ModelManager.h" />
     <ClInclude Include="Managers\SceneManager.h" />
     <ClInclude Include="Managers\ShaderManager.h" />
+    <ClInclude Include="Rendering\BMPLoader.h" />
     <ClInclude Include="Rendering\GameObject.h" />
     <ClInclude Include="Rendering\Lightable.h" />
     <ClInclude Include="Rendering\Model.h" />

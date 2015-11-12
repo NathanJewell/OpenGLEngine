@@ -1,4 +1,4 @@
-#version 450 core
+#version 410 core
 
 //This shader allows for all basic vector multiplication changes to create dynamic models
 //projection matrix, view matrix, rotation, and translation are all supported
@@ -6,13 +6,15 @@
 layout(location = 0) in vec3 in_position;
 layout(location = 1) in vec4 in_color;
 layout(location = 2) in vec3 normal;
+//layout(location = 3) in vec2 uv;
 
 uniform mat4 projection_matrix, view_matrix, model_matrix, rotation_matrix;
 uniform mat4 MVP; //model view projection matrix
 uniform vec3 lightPosition_worldspace;
+//uniform sampler2d tex2d;
 
 //light color, power, position
-out vec4 color;
+out vec4 backup_color;
 out mat4 modelview_matrix;
 out vec3 vertex_worldspace;
 out vec3 normal_cameraspace;
@@ -24,8 +26,9 @@ out vec3 lightPosition_cameraspace;
 
 void main()
 {
+//in_color = texture2d(tex2d, gl_TexCoord[0].st)
 	//translation matrix
-	color = vec4(0.0, 0.0, 1.0, 1.0); //set color to red
+	backup_color = vec4(0.0, 0.0, 1.0, 1.0); //set color to red
 	//color = vec4(normal, 1);
 
 	//remember the order of multiplication is inverted ie(pos will first be multiplied by rotate_z etc...)

@@ -15,7 +15,9 @@ ModelManager::ModelManager()
 
 	Rendering::Models::LoadedModel* cube = new Rendering::Models::LoadedModel();
 	cube->SetProgram(Managers::ShaderManager::GetShader("lightingShader"));
-	cube->Create("C:\\Users\\ethan\\Desktop\\OpenGLEngine\\OpenGLEngine\\OpenGLEngine\\Rendering\\Models\\monkey.obj");
+	//cube->setTextureString("C:\\Users\\Nathan\\Desktop\\OpenGLEngine\\OpenGLEngine\\OpenGLEngine\\Rendering\\Models\\cube.bmp");
+	//cube->Create("C:\\Users\\Nathan\\Desktop\\OpenGLEngine\\OpenGLEngine\\OpenGLEngine\\Rendering\\Models\\monkey.obj");
+	cube->Create("..\\OpenGLEngine\\Rendering\\Models\\uvCube.obj");
 	gameModelList["cube"] = cube;
 
 }

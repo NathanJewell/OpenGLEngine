@@ -24,6 +24,7 @@ int main(int argc, char**argv)
 	Managers::LogManager::FileOutput(false);	//don't output to a file
 	Managers::LogManager::Log(LOG_INFO, "Log Manager Initialized...");
 	//start GLUT main loop
+	//glEnable(GL_CULL_FACE);
 	Core::InitGLUT::run();
 
 	delete scene;

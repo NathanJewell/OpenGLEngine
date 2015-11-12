@@ -2,6 +2,12 @@
 #include "LoadedModel.h"
 #include <iostream>
 
+/* FANCY NORMAL CALCULATION SPEC
+	
+
+
+
+*/
 using namespace Rendering;
 using namespace Models;
 
@@ -15,6 +21,10 @@ inline static void Log(LogLevel level, const std::string& text) //alias for Mana
 LoadedModel::LoadedModel(){}//empty
 LoadedModel::~LoadedModel(){}//handled in base class
 
+void LoadedModel::setTextureString(const std::string& texPath)
+{
+	texturePath = texPath;
+}
 void LoadedModel::Create(const std::string loadPath)
 {
 	GLuint vao;
@@ -61,8 +71,42 @@ void LoadedModel::Create(const std::string loadPath)
 	glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
 	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
+	//UV BUFFER
+	if (uvs.size() >  0)
+	{
+		glGenBuffers(1, &uvBuffer);
+		glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3)*uvs.size(), &uvs[0], GL_STATIC_DRAW);
+
+		glEnableVertexAttribArray(3);
+		glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
+		glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
+
+	}
+
 
 	glBindVertexArray(0);
+	for (int i = 0; i < vertices.size(); i++)
+	{
+		std::cout << i << ": " << vertices[i].x << ", " << vertices[i].y << ", " << vertices[i].z << "\n";
+		if (i + 1 % 3 == 0)
+		{
+			std::cout << "HEBAHABOHOBO\n";
+		}
+	}
+	for (int i = 0; i < normals.size(); i++)
+	{
+		std::cout << i << ": " << normals[i].x << ", " << normals[i].y << ", " << normals[i].z << "\n";
+		if (i + 1 % 3 == 0)
+		{
+			std::cout << "HEBAHABOHOBO\n";
+		}
+	}
+	if (uvs.size() > 0)
+	{
+		textureID = loadBMP(texturePath);
+	}
+
 	this->vao = vao;
 	this->vbos.push_back(vertexBuffer);
 	this->vbos.push_back(colorBuffer);
@@ -140,6 +184,8 @@ void LoadedModel::Draw(const glm::mat4& projectionMatrix,
 	glUniform4f(glGetUniformLocation(program, "diffuseColor"), diffuseColor.r, diffuseColor.g, diffuseColor.b, diffuseColor.a);
 	glUniform3f(glGetUniformLocation(program, "lightPosition_worldspace"), lightPosition_worldspace.x, lightPosition_worldspace.y, lightPosition_worldspace.z);
 	glUniform1f(glGetUniformLocation(program, "lightPower"), lightPower);
+	glUniform1i(glGetUniformLocation(program, "tex2d"), 0); //pass texture uniform to shader
+
 	glBindVertexArray(vao);
 
 	GLint numVertices;
@@ -228,7 +274,7 @@ bool LoadedModel::loadOBJ(const std::string& path, std::vector<glm::vec3>& outVe
 			unsigned int vertexIndex[3], uvIndex[3], normalIndex[3];
 
 			int matches = fscanf(file, "%d/%d/%d %d/%d/%d %d/%d/%d\n", &vertexIndex[0], &uvIndex[0], &normalIndex[0], &vertexIndex[1], &uvIndex[1], &normalIndex[1], &vertexIndex[2], &uvIndex[2], &normalIndex[2]);
-			std::cout << matches << std::endl;
+			
 
 			vertexIndices.push_back(vertexIndex[0]);
 			vertexIndices.push_back(vertexIndex[1]);

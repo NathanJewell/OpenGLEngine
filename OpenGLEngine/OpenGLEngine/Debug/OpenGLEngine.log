@@ -1,28 +1,30 @@
-﻿Build started 11/9/2015 11:25:54 AM.
-     1>Project "C:\Users\ethan\Desktop\OpenGLEngine\OpenGLEngine\OpenGLEngine\OpenGLEngine.vcxproj" on node 2 (Build target(s)).
+﻿Build started 11/11/2015 5:58:54 PM.
+     1>Project "C:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\OpenGLEngine\OpenGLEngine.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\ethan\Desktop\OpenGLEngine\OpenGLEngine\packages\glm.0.9.7.1\build\native\../..//build/native/include/ /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Rendering\Models\LoadedModel.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\packages\glm.0.9.7.1\build\native\../..//build/native/include/ /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Rendering\Models\LoadedModel.cpp
          LoadedModel.cpp
-     1>c:\users\ethan\desktop\openglengine\openglengine\openglengine\rendering\models\loadedmodel.cpp(24): warning C4101: 'uvBuffer' : unreferenced local variable
-     1>c:\users\ethan\desktop\openglengine\openglengine\openglengine\rendering\models\loadedmodel.cpp(213): warning C4101: 'uvIndex' : unreferenced local variable
-     1>cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
+     1>c:\users\nathan\desktop\openglengine\openglengine\openglengine\rendering\models\loadedmodel.cpp(89): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\nathan\desktop\openglengine\openglengine\openglengine\rendering\models\loadedmodel.cpp(97): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\nathan\desktop\openglengine\openglengine\openglengine\rendering\models\loadedmodel.cpp(259): warning C4101: 'uvIndex' : unreferenced local variable
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ethan\Desktop\OpenGLEngine\OpenGLEngine\Debug\OpenGLEngine.exe" /INCREMENTAL /NOLOGO /LIBPATH:Dependencies\freeglut /LIBPATH:Dependencies\glew kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opengl32.lib freeglut.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\ethan\Desktop\OpenGLEngine\OpenGLEngine\Debug\OpenGLEngine.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ethan\Desktop\OpenGLEngine\OpenGLEngine\Debug\OpenGLEngine.lib" /MACHINE:X86 Debug\OpenGLEngine.res
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\Debug\OpenGLEngine.exe" /INCREMENTAL /NOLOGO /LIBPATH:Dependencies\freeglut /LIBPATH:Dependencies\glew kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opengl32.lib freeglut.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\Debug\OpenGLEngine.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\Debug\OpenGLEngine.lib" /MACHINE:X86 Debug\OpenGLEngine.res
          Debug\InitGLEW.obj
          Debug\InitGLUT.obj
          Debug\Main.obj
+         Debug\ControlManager.obj
          Debug\LogManager.obj
          Debug\ModelManager.obj
          Debug\SceneManager.obj
          Debug\ShaderManager.obj
+         Debug\BMPLoader.obj
          Debug\Lightable.obj
          Debug\Model.obj
          Debug\Cube.obj
          Debug\LoadedModel.obj
          Debug\Triangle.obj
-         OpenGLEngine.vcxproj -> C:\Users\ethan\Desktop\OpenGLEngine\OpenGLEngine\Debug\OpenGLEngine.exe
-     1>Done Building Project "C:\Users\ethan\Desktop\OpenGLEngine\OpenGLEngine\OpenGLEngine\OpenGLEngine.vcxproj" (Build target(s)).
+         OpenGLEngine.vcxproj -> C:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\Debug\OpenGLEngine.exe
+     1>Done Building Project "C:\Users\Nathan\Desktop\OpenGLEngine\OpenGLEngine\OpenGLEngine\OpenGLEngine.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.72
+Time Elapsed 00:00:01.21
